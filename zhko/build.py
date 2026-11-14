@@ -148,10 +148,20 @@ class Builder:
         its = cedict.items(e)
         ko = iter(rec["s"]) if rec else None
         rows = []
+        seen = set()
         for it in its:
             if it["k"] == "cl":
                 continue
-            rows.append(self._item(it, next(ko) if ko is not None and it["k"] == "sense" else None))
+            glosses = next(ko) if ko is not None and it["k"] == "sense" else None
+            if glosses:
+                # CEDICT lists near-synonyms as separate glosses ("luxurious/sumptuous/lavish"), so the
+                # Korean often repeats. Show each Korean gloss once; drop a sense that adds nothing.
+                fresh = [g for g in glosses if g not in seen]
+                seen.update(glosses)
+                if not fresh and not it["t"] and not cedict.refs_in(it["g"]):
+                    continue
+                glosses = fresh or glosses
+            rows.append(self._item(it, glosses))
         content = []
         if other_form:
             content.append({"tag": "div", "data": {"zhko": "form"}, "content": f"{other_label} {other_form}"})
