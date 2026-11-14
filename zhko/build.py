@@ -226,6 +226,9 @@ def build_terms(include_untranslated=False):
             continue
         rows.append([e["s"], reading, "", "", score[(e["s"], i)], [b.render(e, e["t"], "번체")], i + 1, ""])
         rows.append([e["t"], reading, "", "", score[(e["t"], i)], [b.render(e, e["s"], "간체")], i + 1, ""])
+    # Yomitan merges rows whose readings differ only in case (能 néng / Néng) and shows the reading of the row
+    # it meets first, so the best-scored row of each form goes first in the bank.
+    rows.sort(key=lambda r: -r[4])
     index = _index(
         TITLE,
         NAME,
