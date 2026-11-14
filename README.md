@@ -8,7 +8,7 @@
 [CC-CEDICT](https://cc-cedict.org/)의 표제어(간체·번체), 병음, 뜻 구분을 그대로 쓰고, 각 뜻을 LLM으로 한국어로 번역합니다.
 한자의 훈음을 보여 주는 한자 사전(Hanzi-ko)도 함께 배포합니다.
 
-> 빈도순으로 Claude Haiku가 번역하고 있습니다. 지금은 가장 자주 쓰이는 18,722개 항목(상위 1만 항목의 98.6%)이 들어 있고, 목표는 말뭉치에 나오는 83,729개 항목 전부입니다. 한자 훈음 10,353자는 Claude Sonnet이 붙였습니다.
+> Claude Haiku가 번역했습니다. 말뭉치([wordfreq](https://github.com/rspeer/wordfreq))에 나오는 83,729개 항목 가운데 83,719개가 들어 있습니다(CC-CEDICT 전체의 71%). 말뭉치에 나오지 않는 나머지 약 3만 4천 항목(드문 고유명사, 생물 종 이름 등)은 아직 번역하지 않았습니다. 한자 훈음 10,353자는 Claude Sonnet이 붙였습니다.
 
 ## 왜 만들었나
 
@@ -74,4 +74,4 @@ node tools/lookup.mjs --text article.txt                # 글을 앞에서부터
 
 ## English
 
-CC-CEDICT-ko is a Chinese→Korean dictionary for [Yomitan](https://github.com/yomidevs/yomitan). It keeps the headwords (simplified and traditional), pinyin and sense divisions of [CC-CEDICT](https://cc-cedict.org/) and gives each sense in Korean. The Korean glosses are machine-translated with an LLM (Claude): the original English is kept in a collapsed section of every entry, and entries the model was unsure about are marked. Translation proceeds in frequency order. `hanzi-ko.zip` is a character dictionary with Korean 훈음 (meaning and Sino-Korean reading). Download both from [Releases](../../releases/latest), set Yomitan's language to Chinese and import them in Settings → Dictionaries. Data: CC BY-SA 4.0 (Unihan fields: Unicode License V3); code: MIT.
+CC-CEDICT-ko is a Chinese→Korean dictionary for [Yomitan](https://github.com/yomidevs/yomitan). It keeps the headwords (simplified and traditional), pinyin and sense divisions of [CC-CEDICT](https://cc-cedict.org/) and gives each sense in Korean. The Korean glosses are machine-translated with an LLM (Claude): the original English is kept in a collapsed section of every entry, and entries the model was unsure about are marked. It covers the 83,719 entries that occur in the wordfreq corpus (71% of CC-CEDICT). `hanzi-ko.zip` is a character dictionary with Korean 훈음 (meaning and Sino-Korean reading). Download both from [Releases](../../releases/latest), set Yomitan's language to Chinese and import them in Settings → Dictionaries. Data: CC BY-SA 4.0 (Unihan fields: Unicode License V3); code: MIT.
