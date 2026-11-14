@@ -1,10 +1,14 @@
 # CC-CEDICT-ko — Yomitan용 중한사전
 
+> Yomitan이 처음이라면 [설치 안내](https://kongchu2.github.io/yomitan-ko/)부터 보세요.
+> 자매 사전: [일본어 → 한국어 (JMdict-ko)](https://github.com/kongchu2/jmdict-ko) · [영어 → 한국어 (Wiktionary-en-ko)](https://github.com/kongchu2/wiktionary-en-ko)
+> 틀린 뜻을 발견하면 [오역 제보](../../issues/new?template=mistranslation.yml)로 알려 주세요.
+
 [Yomitan](https://github.com/yomidevs/yomitan)에서 쓰는 **중국어→한국어** 사전입니다.
 [CC-CEDICT](https://cc-cedict.org/)의 표제어(간체·번체), 병음, 뜻 구분을 그대로 쓰고, 각 뜻을 LLM으로 한국어로 번역합니다.
 한자의 훈음을 보여 주는 한자 사전(Hanzi-ko)도 함께 배포합니다.
 
-> 빈도 상위 50,000개 항목을 Claude Haiku로 번역하고 있습니다. 한자 10,894자의 훈음은 Claude Sonnet으로 붙였습니다.
+> 빈도순으로 Claude Haiku가 번역하고 있습니다. 지금은 가장 자주 쓰이는 18,722개 항목(상위 1만 항목의 98.6%)이 들어 있고, 목표는 말뭉치에 나오는 83,729개 항목 전부입니다. 한자 훈음 10,353자는 Claude Sonnet이 붙였습니다.
 
 ## 왜 만들었나
 
@@ -67,3 +71,7 @@ node tools/lookup.mjs --text article.txt                # 글을 앞에서부터
 - 사전 데이터(`source/cedict_ts.u8`, `translations/`, 빌드된 zip): [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). CC-CEDICT(MDBG 및 기여자)의 파생물입니다.
 - `source/hanzi.jsonl`과 한자 사전의 독음·획수·자형 정보: [Unihan](https://www.unicode.org/charts/unihan.html), [Unicode License V3](LICENSE).
 - 번역 순서를 정할 때 쓰는 빈도 데이터: [wordfreq](https://github.com/rspeer/wordfreq) (CC BY-SA 4.0). 빌드 결과물에는 포함되지 않습니다.
+
+## English
+
+CC-CEDICT-ko is a Chinese→Korean dictionary for [Yomitan](https://github.com/yomidevs/yomitan). It keeps the headwords (simplified and traditional), pinyin and sense divisions of [CC-CEDICT](https://cc-cedict.org/) and gives each sense in Korean. The Korean glosses are machine-translated with an LLM (Claude): the original English is kept in a collapsed section of every entry, and entries the model was unsure about are marked. Translation proceeds in frequency order. `hanzi-ko.zip` is a character dictionary with Korean 훈음 (meaning and Sino-Korean reading). Download both from [Releases](../../releases/latest), set Yomitan's language to Chinese and import them in Settings → Dictionaries. Data: CC BY-SA 4.0 (Unihan fields: Unicode License V3); code: MIT.
